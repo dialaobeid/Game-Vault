@@ -25,3 +25,5 @@ const GameSchema = new Schema({
         required: true
       }
     });
+
+module.exports = Game;
