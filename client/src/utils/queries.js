@@ -34,6 +34,17 @@ export const GET_GAME = gql`
   }
 `;
 
+export const SEARCH_GAMES = gql`
+  query searchGames($searchTerm: String!) {
+    searchGames(searchTerm: $searchTerm) {
+      id
+      title
+    }
+  }
+`;
+
+// Other queries...
+
 export const GET_USER = gql`
   query getUser($id: ID!) {
     user(id: $id) {

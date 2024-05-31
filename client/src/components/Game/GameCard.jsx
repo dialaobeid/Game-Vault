@@ -4,6 +4,7 @@ import GameProgress from './GameProgress';
 
 // Displays overview of game: title & progress for now
 const GameCard = ({ game }) => {
+  // navigates to the game detail page
   const history = useHistory();
 
   const handleCardClick = () => {
