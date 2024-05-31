@@ -1,6 +1,7 @@
 import React from 'react';
 import GameCard from './GameCard';
 
+// Displays list of game cards
 const GameList = ({ games }) => {
   return (
     <div>
