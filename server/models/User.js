@@ -6,14 +6,12 @@ const GameSchema = require('./Game');
 
 
 const userSchema = new Schema({
-  FirstName: {
+  firstName: {
     type: String,
-    required: true,
     trim: true
   },
   lastName: {
     type: String,
-    required: true,
     trim: true
   },
   email: {
@@ -21,7 +19,7 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
-  userName: {
+  username: {
     type: String,
     required: true,
     trim: true,
