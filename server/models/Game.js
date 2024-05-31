@@ -19,6 +19,9 @@ const GameSchema = new Schema({
       platform:{
         type: String
       },
+      releaseDate:{
+        type: String
+      },
       library: {
         type: Schema.Types.ObjectId,
         ref: 'Library',
