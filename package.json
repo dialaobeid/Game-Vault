@@ -4,11 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "node server/server.js",
     "dev": "vite",
     "build": "vite build",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "render-build":"npm install && npm run build"
   },
   "dependencies": {
     "react": "^18.2.0",

@@ -1,4 +1,4 @@
-const { Game, User } = require('../models');
+const { Game, User, Library } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth')
 
 const resolver = {
@@ -27,7 +27,6 @@ const resolver = {
         },
         login: async (parent, {username, email, password }) => {
             const user = await User.findone({ username })
-            const email = await User.findone({ email })
 
             if (!user || !email) {
                 throw AuthenticationError;
@@ -46,4 +45,4 @@ const resolver = {
     }
 }
 
-module.exports = resolvers
+module.exports = resolver

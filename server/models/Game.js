@@ -29,4 +29,4 @@ const GameSchema = new Schema({
       }
     });
 
-module.exports = Game;
+module.exports = GameSchema;
