@@ -1,45 +1,69 @@
 const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
+const bcrypt = require('bcrypt');
+const GameSchema = require('./Game');
 
-const { Schema } = mongoose;
-const bcrypt = require('bycrypt');
-const Order = require('./Order');
-const { User } = require('.');
 
 const userSchema = new Schema({
-    FirstName: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    lastName: {
-        type: String,
-        required: true,
-        trim: true
-      },
-      email: {
-        type: String,
-        required: true,
-        unique: true
-      },
-      userName: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-      password: {
-        type: String,
-        required: true,
-        minlength: 5
-      },
+  FirstName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  userName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 5
+  },
 
-      library: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: "Library"
-        }
-      ]
-    });
+  library: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Library"
+    }
+  ],
+  saveGames: [GameSchema]
 
+},
+{
+  toJSON: {
+    virtuals: true
+  }
+}
+);
+
+
+// hash user password
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  next();
+});
+
+// custom method to compare and validate password for logging in
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
+const User = model('User', userSchema);
 
 module.exports = User;
