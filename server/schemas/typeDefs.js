@@ -23,8 +23,6 @@ type Game {
     releasedate: String  
 }
 
-
-
 input GameInput {
     name: String
     description: String
