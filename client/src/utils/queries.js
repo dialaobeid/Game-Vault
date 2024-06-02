@@ -43,8 +43,6 @@ export const SEARCH_GAMES = gql`
   }
 `;
 
-// Other queries...
-
 export const GET_USER = gql`
   query getUser($id: ID!) {
     user(id: $id) {
