@@ -30,13 +30,7 @@ const userSchema = new Schema({
     minlength: 5
   },
 
-  library: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Library"
-    }
-  ],
-  saveGames: [GameSchema]
+  savedGames: [GameSchema]
 
 },
 {

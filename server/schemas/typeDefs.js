@@ -6,7 +6,7 @@ type User {
     email: String
     username: String 
     password: String
-    games: [Game]
+    savedGames: [Game]
 }
 
 type Auth {
