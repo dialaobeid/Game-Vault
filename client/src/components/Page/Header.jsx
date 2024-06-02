@@ -4,6 +4,7 @@ import { isAuthenticated, logout } from '../../utils/auth';
 
 const Header = () => {
   // restricts access for only logged-in users
+  // auth ? = condition to check if user authenticated; 2 diff navbars are rendered when T/F
   const auth = isAuthenticated();
 
   return (
@@ -17,7 +18,8 @@ const Header = () => {
               <li><Link to="/library">Library</Link></li>
               <li><Link to="/" onClick={logout}>Logout</Link></li>
             </>
-          ) : (
+                  ): 
+          (
             <>
               <li><Link to="/login">Login</Link></li>
               <li><Link to="/signup">Signup</Link></li>

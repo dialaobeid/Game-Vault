@@ -42,7 +42,7 @@ const GameSearch = () => {
           {data.searchGames.map((game) => (
             <li key={game.id}>
               {game.title}
-              <button onClick={() => handleAddGame(game.id)}>Add to Library</button>
+              <button onClick={() => handleAddGame(game.id)}>Add Game</button>
             </li>
           ))}
         </ul>

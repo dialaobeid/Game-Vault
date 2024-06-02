@@ -58,8 +58,6 @@ export const GET_GAMES = gql`
 //   }
 // `;
 
-// Other queries...
-
 export const GET_USER = gql`
 query User($username: String) {
   user(username: $username) {
