@@ -22,11 +22,6 @@ const GameSchema = new Schema({
       releaseDate:{
         type: String
       },
-      library: {
-        type: Schema.Types.ObjectId,
-        ref: 'Library',
-        required: true
-      }
     });
 
 module.exports = GameSchema;
