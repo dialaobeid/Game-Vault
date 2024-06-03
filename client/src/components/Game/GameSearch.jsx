@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { SEARCH_GAMES } from '../../utils/queries';
-import { ADD_GAME_TO_LIBRARY } from '../../utils/mutations';
+import { SAVE_GAME } from '../../utils/mutations';
 
-// lets users add games to library
+// allows users to add games to library
 const GameSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchGames, { loading, data }] = useLazyQuery(SEARCH_GAMES);
-  const [addGameToLibrary] = useMutation(ADD_GAME_TO_LIBRARY);
+  const [saveGame] = useMutation(SAVE_GAME);
 
   const handleSearch = (e) => {
     e.preventDefault();
     searchGames({ variables: { searchTerm } });
   };
 
-  const handleAddGame = async (gameId) => {
+  const handleAddGame = async (game) => {
     try {
-      await addGameToLibrary({ variables: { gameId } });
+      await saveGame({ variables: { newGame: game } });
       alert('Game added to your library!');
     } catch (e) {
       console.error(e);
@@ -42,7 +42,7 @@ const GameSearch = () => {
           {data.searchGames.map((game) => (
             <li key={game.id}>
               {game.title}
-              <button onClick={() => handleAddGame(game.id)}>Add Game</button>
+              <button onClick={() => handleAddGame(game)}>Add Game</button>
             </li>
           ))}
         </ul>

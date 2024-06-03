@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import GameProgress from './GameProgress';
 import ReviewList from '../Review/ReviewList';
-
 import { GET_GAME } from '../../utils/queries';
 
-// Displays game info in detail (description, progress & reviews)
+// displays detailed game info
 const GameDetail = () => {
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_GAME, {

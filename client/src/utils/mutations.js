@@ -1,15 +1,5 @@
 import { gql } from '@apollo/client';
 
-// export const ADD_GAME_TO_LIBRARY = gql`
-//   mutation addGameToLibrary($gameId: ID!) {
-//     addGameToLibrary(gameId: $gameId) {
-//       id
-//       title
-//       progress
-//     }
-//   }
-// `;
-
 export const LOGIN = gql `
 mutation Login($username: String!, $password: String!) {
   login(username: $username, password: $password) {
@@ -19,15 +9,15 @@ mutation Login($username: String!, $password: String!) {
     token
   }
 }
-`
+`;
 
-export const SINGUP = gql  `
+export const SIGNUP = gql  `
 mutation AddUser($username: String!, $email: String!, $password: String!) {
   addUser(username: $username, email: $email, password: $password) {
     token
   }
 }
-`
+`;
 
 export const SAVE_GAME = gql `
 mutation SaveGame($newGame: GameInput) {
@@ -41,9 +31,9 @@ mutation SaveGame($newGame: GameInput) {
     }
   }
 }
-`
+`;
 
-export const REVOMVE_GAME = gql `
+export const REMOVE_GAME = gql `
 mutation RemoveGame($gameId: ID!) {
   removeGame(gameId: $gameId) {
     savedGames {
@@ -51,5 +41,4 @@ mutation RemoveGame($gameId: ID!) {
     }
   }
 }
-`
-
+`;
