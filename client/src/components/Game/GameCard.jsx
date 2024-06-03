@@ -1,20 +1,48 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { SAVE_GAME, REMOVE_GAME } from '../../utils/mutations';
 import GameProgress from './GameProgress';
+import GameForm from './GameForm';
 
-// Displays overview of game: title & progress for now
+// allows users to edit/remove games from library
 const GameCard = ({ game }) => {
-  // navigates to the game detail page
-  const history = useHistory();
+  const [isEditing, setIsEditing] = useState(false);
+  const [saveGame] = useMutation(SAVE_GAME);
+  const [removeGame] = useMutation(REMOVE_GAME);
 
-  const handleCardClick = () => {
-    history.push(`/game/${game.id}`);
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleFormSubmit = async (gameData) => {
+    try {
+      await saveGame({ variables: { newGame: gameData } });
+      setIsEditing(false);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleRemoveClick = async () => {
+    try {
+      await removeGame({ variables: { gameId: game._id } });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
-    <div onClick={handleCardClick} style={{ cursor: 'pointer' }}>
-      <h2>{game.title}</h2>
-      <GameProgress progress={game.progress} />
+    <div style={{ cursor: 'pointer', border: '1px solid #ccc', margin: '10px', padding: '10px', borderRadius: '5px' }}>
+      {isEditing ? (
+        <GameForm game={game} onSubmit={handleFormSubmit} />
+      ) : (
+        <div>
+          <h2>{game.name}</h2>
+          <GameProgress progress={game.progress} />
+          <button onClick={handleEditClick}>Edit</button>
+          <button onClick={handleRemoveClick}>Remove</button>
+        </div>
+      )}
     </div>
   );
 };
