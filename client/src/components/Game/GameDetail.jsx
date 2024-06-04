@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import GameProgress from './GameProgress';
 import ReviewList from '../Review/ReviewList';
-import { GET_GAME } from '../../utils/queries';
+import { GET_GAMES } from '../../utils/queries';
 
 // displays detailed game info
 const GameDetail = () => {
   const { id } = useParams();
-  const { loading, error, data } = useQuery(GET_GAME, {
+  const { loading, error, data } = useQuery(GET_GAMES, {
     variables: { id },
   });
 

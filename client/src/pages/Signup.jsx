@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../utils/mutations';
 import Header from '../components/Page/Header';
@@ -10,7 +10,7 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signup, { error }] = useMutation(SIGNUP);
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { isAuthenticated, logout } from '../../utils/auth';
+import AuthService from '../../utils/auth';
 
 const Header = () => {
   // restricts access for only logged-in users
   // auth ? = condition to check if user authenticated; 2 diff navbars are rendered when T/F
-  const auth = isAuthenticated();
+  const auth = AuthService.loggedIn();
 
   return (
     <header>
@@ -16,7 +16,7 @@ const Header = () => {
             <>
               <li><Link to="/profile">Profile</Link></li>
               <li><Link to="/library">Library</Link></li>
-              <li><Link to="/" onClick={logout}>Logout</Link></li>
+              <li><Link to="/" onClick={AuthService.logout}>Logout</Link></li>
             </>
                   ): 
           (

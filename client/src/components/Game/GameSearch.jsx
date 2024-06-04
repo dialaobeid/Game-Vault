@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { SEARCH_GAMES } from '../../utils/queries';
 import { SAVE_GAME } from '../../utils/mutations';
 
 // allows users to add games to library
 const GameSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchGames, { loading, data }] = useLazyQuery(SEARCH_GAMES);
   const [saveGame] = useMutation(SAVE_GAME);
 
   const handleSearch = (e) => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SAVE_GAME, REMOVE_GAME } from '../../utils/mutations';
 import GameProgress from './GameProgress';
-import GameForm from './GameForm';
+// import GameForm from './GameForm';
 
 // allows users to edit/remove games from library
 const GameCard = ({ game }) => {
