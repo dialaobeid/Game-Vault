@@ -7,11 +7,11 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import React from 'react';
-//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import './App.css';
 import Footer from './components/Page/Footer';
 import Header from './components/Page/Header';
+// outlet will automatically refer to code from main.jsx
+import { Outlet } from 'react-router-dom';
+import './App.css';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -36,11 +36,9 @@ const App = () => {
   console.log('Rendering App.jsx');
   return (
     <ApolloProvider client={client}>
-
       <Header />
-      <div> testing </div>
+      <Outlet />
       <Footer />
-
     </ApolloProvider>
   );
 };

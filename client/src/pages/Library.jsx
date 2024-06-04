@@ -12,12 +12,10 @@ const Library = () => {
 
   return (
     <div>
-      <Header />
       <main>
         <h1>Game Library</h1>
         <GameList games={games} />
       </main>
-      <Footer />
     </div>
   );
 };

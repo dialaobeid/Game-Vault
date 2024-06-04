@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
-import { useLazyQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { SAVE_GAME } from '../../utils/mutations';
 
-// allows users to add games to library
 const GameSearch = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [gameName, setGameName] = useState('');
   const [saveGame] = useMutation(SAVE_GAME);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    searchGames({ variables: { searchTerm } });
+  const handleChange = (e) => {
+    setGameName(e.target.value);
   };
 
-  const handleAddGame = async (game) => {
+  const handleAddGame = async (e) => {
+    e.preventDefault();
     try {
-      await saveGame({ variables: { newGame: game } });
+      await saveGame({
+        variables: {
+          newGame: {
+            name: gameName,
+            description: '',
+            platform: '',
+            releaseDate: '',
+          },
+        },
+      });
       alert('Game added to your library!');
+      setGameName(''); // Reset form field
     } catch (e) {
       console.error(e);
       alert('Failed to add game.');
@@ -24,27 +33,17 @@ const GameSearch = () => {
 
   return (
     <div>
-      <form onSubmit={handleSearch}>
+      <form onSubmit={handleAddGame}>
         <input
           type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search for games..."
-          style={{ width: '100%', padding: '10px', margin: '20px 0' }}
+          name="name"
+          value={gameName}
+          onChange={handleChange}
+          placeholder="Game Name"
+          required
         />
-        <button type="submit">Search</button>
+        <button type="submit">Add Game</button>
       </form>
-      {loading && <p>Loading...</p>}
-      {data && (
-        <ul>
-          {data.searchGames.map((game) => (
-            <li key={game.id}>
-              {game.title}
-              <button onClick={() => handleAddGame(game)}>Add Game</button>
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 };

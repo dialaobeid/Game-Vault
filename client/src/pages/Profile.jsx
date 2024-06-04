@@ -1,8 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
-import Header from '../components/Page/Header';
-import Footer from '../components/Page/Footer';
 import GameList from '../components/Game/GameList';
 
 const Profile = () => {
@@ -15,7 +13,6 @@ const Profile = () => {
 
   return (
     <div>
-      <Header />
       <main>
         <h1>User Profile</h1>
         <div>
@@ -24,7 +21,6 @@ const Profile = () => {
         <h2>Your Game Library</h2>
         {savedGames.length > 0 ? <GameList games={savedGames} /> : <p>No games added yet.</p>}
       </main>
-      <Footer />
     </div>
   );
 };
