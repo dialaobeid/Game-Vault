@@ -1,61 +1,106 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../utils/mutations';
-import Header from '../components/Page/Header';
-import Footer from '../components/Page/Footer';
+import Auth from '../utils/auth';
 
 const Signup = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [signup, { error }] = useMutation(SIGNUP);
-  // const history = useHistory();
+  const [formState, setFormState] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+  const [signup, { error, data }] = useMutation(SIGNUP);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
     try {
-      const { data } = await signup({ variables: { username, email, password } });
-      localStorage.setItem('token', data.addUser.token);
-      history.push('/profile');
+      const { data } = await signup({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
+
+    // clear form values
+    setFormState({
+      username: '',
+      email: '',
+      password: '',
+    });
   };
 
   return (
-    <div>
-      <Header />
-      <main>
-        <h1>Signup</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-            required
-          />
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            required
-          />
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            required
-          />
-          <button type="submit">Signup</button>
-        </form>
-        {error && <p>Error signing up: {error.message}</p>}
-      </main>
-      <Footer />
-    </div>
+    <main className="flex-row justify-center mb-4">
+      <div className="col-12 col-lg-10">
+        <div className="card">
+          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+          <div className="card-body">
+            {data ? (
+              <p>
+                Success! You may now head{' '}
+                <Link to="/">back to the homepage.</Link>
+              </p>
+            ) : (
+              <form onSubmit={handleFormSubmit}>
+                <input
+                  className="form-input"
+                  placeholder="Your username"
+                  name="username"
+                  type="text"
+                  value={formState.username}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  className="form-input"
+                  placeholder="Your email"
+                  name="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  className="form-input"
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  value={formState.password}
+                  onChange={handleChange}
+                  required
+                />
+                <button
+                  className="btn btn-block btn-primary"
+                  style={{ cursor: 'pointer' }}
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </form>
+            )}
+
+            {error && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {error.message}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </main>
   );
 };
 
