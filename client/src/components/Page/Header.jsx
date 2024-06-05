@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../../utils/auth';
+import logo from '../../assets/images/PAlogo.png'; 
 
 const Header = () => {
   // restricts access for only logged-in users
-  // auth ? = condition to check if user authenticated; 2 diff navbars are rendered when T/F
   const auth = AuthService.loggedIn();
 
   return (
     <header>
+      <div className="logo-container">
+      <img src={logo} alt="Site Logo" className="site-logo" />
+      </div>
       <nav>
         <ul>
           <li><Link to="/">Home</Link></li>

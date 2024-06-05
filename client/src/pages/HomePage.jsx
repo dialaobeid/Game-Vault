@@ -1,15 +1,14 @@
 import React from 'react';
+import { Box, Heading, Text } from '@chakra-ui/react';
 import GameSearch from '../components/Game/GameSearch';
 
 const HomePage = () => {
   return (
-    <div>
-      <main>
-        <h1>Welcome to Player Archive</h1>
-        <p>Your ultimate gaming companion.</p>
-        <GameSearch />
-      </main>
-    </div>
+    <Box textAlign="center" py={10}>
+      <Heading as="h1">Welcome to Player Archive</Heading>
+      <Text>Your ultimate gaming companion.</Text>
+      <GameSearch />
+    </Box>
   );
 };
 
