@@ -42,7 +42,7 @@ const GameSearch = () => {
           placeholder="Game Name"
           required
         />
-        <button type="submit">Add Game</button>
+        <button type="submit">Search</button>
       </form>
     </div>
   );
