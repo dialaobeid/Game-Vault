@@ -14,12 +14,12 @@ const Profile = () => {
   return (
     <div>
       <main>
-        <h1>User Profile</h1>
+        <h2>User Profile</h2>
         <div>
-          <h2>Username: {username}</h2>
+          <h4>Username: {username}</h4>
         </div>
         <h2>Your Game Library</h2>
-        {savedGames.length > 0 ? <GameList games={savedGames} /> : <p>No games added yet.</p>}
+        {savedGames.length > 0 ? <GameList games={savedGames} /> : <p>No games added yet</p>}
       </main>
     </div>
   );
