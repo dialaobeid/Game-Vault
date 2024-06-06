@@ -16,10 +16,15 @@ const Profile = () => {
       <main>
         <h2>User Profile</h2>
         <div>
-          <h4>Username: {username}</h4>
+          <h3>Username: {username}</h3>
+          {/* <h3>Email: {email}</h3> */}
         </div>
         <h2>Your Game Library</h2>
-        {savedGames.length > 0 ? <GameList games={savedGames} /> : <p>No games added yet</p>}
+        {savedGames.length > 0 ? (
+          <GameList games={savedGames} />
+        ) : (
+          <p className='custom-p'>No games added yet</p>
+        )}
       </main>
     </div>
   );
