@@ -28,6 +28,7 @@ mutation SaveGame($newGame: GameInput) {
       platform
       Image
       releasedate
+      progress
     }
   }
 }

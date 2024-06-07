@@ -34,10 +34,12 @@ const GameCard = ({ game }) => {
   return (
     <div style={{ cursor: 'pointer', border: '1px solid #ccc', margin: '10px', padding: '10px', borderRadius: '5px' }}>
       {isEditing ? (
-        <GameForm game={game} onSubmit={handleFormSubmit} />
+        <GameForm game={game} image={game.background_image} onSubmit={handleFormSubmit} />
+        
       ) : (
         <div>
           <h3>{game.name}</h3>
+          <img src={game.Image}></img>
           <GameProgress progress={game.progress} />
           <button className="btn btn-primary" onClick={handleEditClick}>Edit</button>
           <button className="btn btn-primary" onClick={handleRemoveClick}>Remove</button>
