@@ -18,10 +18,9 @@ const Header = () => {
           {auth ? (
             <>
               <li><Link to="/profile">Profile</Link></li>
-              <li><Link to="/library">Library</Link></li>
               <li><Link to="/" onClick={AuthService.logout}>Logout</Link></li>
             </>
-                  ): 
+                  ):
           (
             <>
               <li><Link to="/login">Login</Link></li>

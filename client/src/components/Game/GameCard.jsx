@@ -37,10 +37,10 @@ const GameCard = ({ game }) => {
         <GameForm game={game} onSubmit={handleFormSubmit} />
       ) : (
         <div>
-          <h2>{game.name}</h2>
+          <h3>{game.name}</h3>
           <GameProgress progress={game.progress} />
-          <button onClick={handleEditClick}>Edit</button>
-          <button onClick={handleRemoveClick}>Remove</button>
+          <button className="btn btn-primary" onClick={handleEditClick}>Edit</button>
+          <button className="btn btn-primary" onClick={handleRemoveClick}>Remove</button>
         </div>
       )}
     </div>

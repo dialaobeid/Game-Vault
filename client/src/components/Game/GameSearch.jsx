@@ -32,9 +32,10 @@ const GameSearch = () => {
   };
 
   return (
-    <div>
+    <div className="container mt-5">
       <form onSubmit={handleAddGame}>
         <input
+          className="form-control mb-3"
           type="text"
           name="name"
           value={gameName}
@@ -42,7 +43,7 @@ const GameSearch = () => {
           placeholder="Game Name"
           required
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="btn btn-primary btn-block">Search</button>
       </form>
     </div>
   );
