@@ -70,6 +70,7 @@ const GameSearch = () => {
                   <div>
                     <h5>{game.name}</h5>
                     <p>{game.released}</p>
+                    <img src={game.background_image} className='w-50 p-3' alt="Art of game" />
                   </div>
                   <button
                     className="btn btn-success"
