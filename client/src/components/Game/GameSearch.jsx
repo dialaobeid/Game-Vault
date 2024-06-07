@@ -61,24 +61,20 @@ const GameSearch = () => {
       </form>
 
       {games.length > 0 && (
-        <div className="mt-4">
-          <h2>Search Results</h2>
+        <div className="search-results mt-4">
+          <h4>Search Results</h4>
           <ul className="list-group">
             {games.map((game) => (
-              <li key={game.id} className="list-group-item">
-                <div className="d-flex justify-content-between align-items-center">
-                  <div>
-                    <h5>{game.name}</h5>
-                    <p>{game.released}</p>
-                    <img src={game.background_image} className='w-50 p-3' alt="Art of game" />
-                  </div>
-                  <button
-                    className="btn btn-success"
-                    onClick={() => handleAddGame(game)}
-                  >
-                    Add to Library
-                  </button>
-                </div>
+              <li key={game.id} className="search-result-item list-group-item">
+                <div className="search-result-title">{game.name}</div>
+                <div className="search-result-date">{game.released}</div>
+                <img src={game.background_image} className='w-50 p-3' alt="Art of game" />
+                <button
+                  className="add-to-library-button"
+                  onClick={() => handleAddGame(game)}
+                >
+                  Add to Library
+                </button>
               </li>
             ))}
           </ul>
