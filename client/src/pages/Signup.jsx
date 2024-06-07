@@ -40,7 +40,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container position-absolute top-50 start-50 translate-middle">
       <div className="card">
         <div className="card-body">
           {data ? (
