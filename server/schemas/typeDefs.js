@@ -14,6 +14,8 @@ type Auth {
     user: User
   }
 
+
+
 type Game {
     _id: ID
     name: String
@@ -21,6 +23,8 @@ type Game {
     Image: String
     platform: String
     releasedate: String  
+    progress: String
+
 }
 
 input GameInput {

@@ -21,6 +21,7 @@ const GameDetail = () => {
     <div>
       <h1>{game.title}</h1>
       <p>{game.description}</p>
+      <img src={game.background_image}></img>
       <GameProgress progress={game.progress} />
       <ReviewList reviews={game.reviews} />
     </div>
