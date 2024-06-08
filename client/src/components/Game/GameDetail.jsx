@@ -11,22 +11,22 @@ const GameDetail = ({ game, onSubmit }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await saveGame({
+      const { data } = await saveGame({
         variables: {
           newGame: {
-            // _id: game._id,
+            _id: game._id,
             name: game.name,
             description: game.description,
             platform: game.platform,
             releasedate: game.releasedate,
             Image: game.Image,
-            progress: parseInt(progress, 10),
+            progress: progress.toString(),
           },
         },
       });
-      onSubmit();
+      onSubmit({ ...game, progress: progress.toString() });
     } catch (e) {
-      console.error(e);
+      console.error('Failed to save game:', e);
       setFormError('Failed to save game. Please check the input and try again.');
     }
   };
