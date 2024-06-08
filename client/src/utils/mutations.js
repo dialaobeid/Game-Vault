@@ -23,6 +23,7 @@ export const SAVE_GAME = gql `
 mutation SaveGame($newGame: GameInput) {
   saveGame(newGame: $newGame) {
     savedGames {
+      _id
       name
       description
       platform
