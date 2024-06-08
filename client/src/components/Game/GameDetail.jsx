@@ -21,6 +21,11 @@ const GameDetail = ({ game, onSubmit }) => {
             releasedate: game.releasedate,
             Image: game.Image,
             progress: progress.toString(),
+            // I can change this section to:
+            // newGame: {
+            //   _id: game._id,
+            //   progress: progress.toString(),
+            // },
           },
         },
       });

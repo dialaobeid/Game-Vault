@@ -12,7 +12,7 @@ const GameCard = ({ game, refetch }) => {
 
   const handleFormSubmit = async (updatedGame) => {
     try {
-      await saveGame({ variables: { newGame: updatedGame } });
+      await saveGame({ variables: { gameId: currentGame._id } });
       setCurrentGame(updatedGame);
       setIsEditing(false);
       refetch(); // Refetch data to update library
@@ -44,7 +44,7 @@ const GameCard = ({ game, refetch }) => {
           <h3>{currentGame.name}</h3>
           <GameProgress progress={currentGame.progress} />
           <button className="btn btn-primary" onClick={() => setIsEditing(true)}>Edit</button>
-          <button className="btn btn-danger" onClick={handleRemoveClick}>Remove</button>
+          <button className="btn btn-primary btn-danger" onClick={handleRemoveClick}>Remove</button>
         </div>
       )}
     </div>
