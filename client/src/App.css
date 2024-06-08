@@ -90,8 +90,8 @@ footer {
 }
 
 .site-logo {
-  height: 100px;
-  width: 100px;
+  height: 180px;
+  width: 180px;
   border-radius: 10%;
   object-fit: cover;
   -webkit-border-radius: 10%;
@@ -143,7 +143,12 @@ input::placeholder {
   margin: 0 auto;
 }
 
-/* Custom styles for Bootstrap buttons */
+/* styling profile */
+.profile {
+  margin-top: 100px;
+}
+
+/* styling for bootstrap buttons */
 .btn-primary {
   background-color: black;
   border: 1px solid transparent;
@@ -153,7 +158,7 @@ input::placeholder {
 .btn-primary:hover {
   border-color: #6747e6;
   background-color: black;
-  box-shadow: 0 0 10px rgb(63, 126, 227);;
+  box-shadow: 0 0 10px rgb(63, 126, 227);
 }
 
 .btn-primary:focus,
@@ -161,7 +166,13 @@ input::placeholder {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* styling for headings */
+.btn-danger:hover {
+  border-color: #6747e6;
+  box-shadow: 0 0 10px rgb(63, 126, 227);
+  background-color: red;
+}
+
+/* styling for headings and text */
 h1 {
   font-family: "Audiowide", sans-serif;
   margin-top: 120px;

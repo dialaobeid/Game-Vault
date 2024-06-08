@@ -12,7 +12,7 @@ const Profile = () => {
   const { username, savedGames } = data.me;
 
   return (
-    <div>
+    <div className='profile'>
       <main>
         <h2>User Profile</h2>
         <div>
