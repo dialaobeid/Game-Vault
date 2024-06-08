@@ -2,22 +2,18 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SAVE_GAME, REMOVE_GAME } from '../../utils/mutations';
 import GameProgress from './GameProgress';
-// import GameForm from './GameForm';
+import GameDetail from './GameDetail';
 
-// allows users to edit/remove games from library
-const GameCard = ({ game }) => {
+const GameCard = ({ game, refetch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [saveGame] = useMutation(SAVE_GAME);
   const [removeGame] = useMutation(REMOVE_GAME);
-
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
 
   const handleFormSubmit = async (gameData) => {
     try {
       await saveGame({ variables: { newGame: gameData } });
       setIsEditing(false);
+      refetch(); // Refetch the user data to update the game library
     } catch (e) {
       console.error(e);
     }
@@ -26,6 +22,7 @@ const GameCard = ({ game }) => {
   const handleRemoveClick = async () => {
     try {
       await removeGame({ variables: { gameId: game._id } });
+      refetch(); // Refetch the user data to update the game library
     } catch (e) {
       console.error(e);
     }
@@ -34,15 +31,13 @@ const GameCard = ({ game }) => {
   return (
     <div style={{ cursor: 'pointer', border: '1px solid #ccc', margin: '10px', padding: '10px', borderRadius: '5px' }}>
       {isEditing ? (
-        <GameForm game={game} image={game.background_image} onSubmit={handleFormSubmit} />
-        
+        <GameDetail game={game} onSubmit={handleFormSubmit} />
       ) : (
         <div>
           <h3>{game.name}</h3>
-          <img src={game.Image}></img>
           <GameProgress progress={game.progress} />
-          <button className="btn btn-primary" onClick={handleEditClick}>Edit</button>
-          <button className="btn btn-primary" onClick={handleRemoveClick}>Remove</button>
+          <button className="btn btn-primary" onClick={() => setIsEditing(true)}>Edit</button>
+          <button className="btn btn-danger" onClick={handleRemoveClick}>Remove</button>
         </div>
       )}
     </div>

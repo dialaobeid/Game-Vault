@@ -1,14 +1,11 @@
 import React from 'react';
 import GameCard from './GameCard';
 
-
-
-// Displays list of game cards
-const GameList = ({ games }) => {
+const GameList = ({ games, refetch }) => {
   return (
     <div>
-      {games.map(game => (
-        <GameCard key={game.id} game={game} />
+      {games.map((game) => (
+        <GameCard key={game._id} game={game} refetch={refetch} />
       ))}
     </div>
   );
