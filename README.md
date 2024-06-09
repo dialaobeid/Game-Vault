@@ -10,7 +10,6 @@ AS A gaming enthusiast
 I WANT TO build a game library
 SO THAT I can illustrate my progress in each game
 ```
-
 ## Acceptance Criteria
 ```
 Given that I am using a video game search platform
@@ -49,9 +48,7 @@ Game library:
 The team members on this project are:
 
 Alejandro Sanchez - Backend
-
 Danniel Merino - Backend/Frontend
-
 Diala Obeid - Frontend
 
 ## Links to Deployed Application and Github:
