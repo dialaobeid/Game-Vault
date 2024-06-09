@@ -22,7 +22,7 @@ const Profile = () => {
         {savedGames.length > 0 ? (
           <GameList games={savedGames} refetch={refetch} />
         ) : (
-          <p>No games added yet</p>
+          <p className='custom-p'>No games added yet</p>
         )}
       </main>
     </div>
