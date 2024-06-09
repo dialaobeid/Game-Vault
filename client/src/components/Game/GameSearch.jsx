@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SAVE_GAME } from '../../utils/mutations';
-import Auth from '../../utils/auth';
 import { searchVideoGames } from '../../utils/API';
 
 // allows users to search for games then add to library

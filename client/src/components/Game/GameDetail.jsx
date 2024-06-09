@@ -39,7 +39,7 @@ const GameDetail = ({ game, onSubmit }) => {
   return (
     <form onSubmit={handleFormSubmit}>
       <div className="form-group">
-        <label htmlFor="progress">Progress</label>
+        <label className="custom-p" htmlFor="progress">Progress update</label>
         <input
           type="number"
           className="form-control"
