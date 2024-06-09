@@ -4,7 +4,7 @@ import { SAVE_GAME } from '../../utils/mutations';
 import { searchVideoGames } from '../../utils/API';
 
 // allows users to search for games then add to library
-const GameSearch = ({ onGameAdded }) => {
+const GameSearch = ({ refetch }) => {
   const [gameName, setGameName] = useState('');
   const [games, setGames] = useState([]);
   const [saveGame] = useMutation(SAVE_GAME);
