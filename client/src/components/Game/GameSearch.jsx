@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SAVE_GAME } from '../../utils/mutations';
-import Auth from '../../utils/auth';
 import { searchVideoGames } from '../../utils/API';
 
 // allows users to search for games then add to library
-const GameSearch = () => {
+const GameSearch = ({ refetch }) => {
   const [gameName, setGameName] = useState('');
   const [games, setGames] = useState([]);
   const [saveGame] = useMutation(SAVE_GAME);
@@ -34,15 +33,15 @@ const GameSearch = () => {
             platform: game.platforms?.map((p) => p.platform.name).join(', ') || '',
             releasedate: game.released || '',
             Image: game.background_image || '',
+            progress: '0',
           },
         },
       });
       alert('Game added to your library!');
       setGameName(''); // Reset form field
-      setGames([]); // Clear search results
+      refetch(); // refetch saved games to update library
     } catch (e) {
-      console.error(e);
-      alert('Failed to add game.');
+      console.error('Failed to add game.', error);
     }
   };
 
